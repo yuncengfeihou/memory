@@ -1,5 +1,5 @@
 {
-    "display_name": "qvink_memory",
+    "display_name": "qvink_memoryX",
     "loading_order": 100,
     "requires": [],
     "optional": [],
@@ -7,6 +7,6 @@
     "css": "style.css",
     "author": "qvink",
     "version": "0.8.23.release",
-    "homePage": "https://github.com/qvink/qvink_memory.git",
+    "homePage": "",
     "generate_interceptor": "memory_intercept_messages"
 }
