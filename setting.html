@@ -1,0 +1,354 @@
+<div id="qvink_memory_settings" class="qvink_memory_settings_content">
+    <div class="inline-drawer">
+
+        <div class="inline-drawer-toggle inline-drawer-header">
+            <div class="flex-container alignitemscenter margin0">
+                <b>Qvink Memory</b>
+                <i id="qvink_popout_button" class="fa-solid fa-window-restore menu_button margin0"></i>
+            </div>
+            <div class="inline-drawer-icon fa-solid fa-circle-chevron-down down"></div>
+        </div>
+
+        <div class="inline-drawer-content">
+
+            <!-- transferred to popup -->
+            <div class="qvink_memory_settings_content">
+                <hr>
+
+                <div class="flex-container justifyspacebetween alignitemscenter">
+                    <button id="toggle_chat_memory" class="menu_button flex2" title="切换此对话是否启用记忆（覆盖所有设置）。"><span>切换记忆开关</span></button>
+                    <button id="edit_memory_state" class="menu_button flex2" title="编辑对话中的记忆。"><span>编辑记忆</span></button>
+                    <button id="refresh_memory" class="menu_button fa-solid fa-sync margin0" title="仅刷新包含哪些记忆并重新渲染每条消息下的记忆，不更改摘要。此操作会一直自动进行，按钮仅用于备用。"></button>
+                </div>
+
+                <hr>
+
+                <div>
+                    <div class="flex-container justifyspacebetween alignitemscenter" style="margin: auto; width: fit-content;">
+                        <h4 class="textAlignCenter">配置档案</h4>
+                        <button id="import_profile"     class="menu_button fa-solid fa-file-import"    title="导入配置档案"></button>
+                        <button id="export_profile"     class="menu_button fa-solid fa-file-export"    title="导出当前配置档案"></button>
+                        <input id="import_file" type="file" hidden="" accept=".json">
+                    </div>
+                </div>
+
+                <div class="flex-container justifyspacebetween alignitemscenter">
+                    <select id="profile"            class="flex1 text_pole"                                 title="当前选中的档案"></select>
+                    <button id="save_profile"       class="menu_button fa-solid fa-save interactable"       title="保存当前档案" tabindex="0"></button>
+                    <button id="rename_profile"     class="menu_button fa-solid fa-pencil interactable"     title="重命名当前档案" tabindex="0"></button>
+                    <button id="new_profile"        class="menu_button fa-solid fa-file-circle-plus interactable" title="创建新档案" tabindex="0"></button>
+                    <button id="restore_profile"    class="menu_button fa-solid fa-recycle interactable"    title="恢复当前档案" tabindex="0"></button>
+                    <button id="delete_profile"     class="menu_button fa-solid fa-trash-can interactable"  title="删除当前档案" tabindex="0"></button>
+                </div>
+                <div class="flex-container justifyspacebetween alignitemscenter">
+                    <button id="character_profile" class="menu_button interactable" title="为当前角色自动加载档案" tabindex="0"><i class="fa-solid fa-unlock" style="margin-right: 1em"></i>角色</button>
+                    <button id="chat_profile"      class="menu_button interactable" title="为当前对话自动加载档案"      tabindex="0"><i class="fa-solid fa-unlock" style="margin-right: 1em"></i>对话</button>
+                    <label class="checkbox_label" title="切换档案时显示通知">
+                        <input id="notify_on_profile_switch" type="checkbox" />
+                        <span>切换时通知</span>
+                    </label>
+                </div>
+
+
+                <!-- Summarization -->
+                <hr>
+                <h4 class="textAlignCenter">摘要生成 <i class="fa-solid fa-info-circle" title="自定义用于摘要给定消息的提示"></i></h4>
+                <div class="flex-container justifyspacebetween alignitemscenter">
+                    <button id="edit_summary_prompt" class="menu_button flex1" title="编辑摘要提示" >编辑</button>
+                    <button id="preview_summary_prompt" class="menu_button fa-solid fa-eye" title="预览填充后的摘要提示，使用最后一条消息作为示例。" ></button>
+                    <button id="stop_summarization" class="menu_button fa-solid fa-stop" title="立即停止所有摘要任务。"></button>
+                </div>
+
+                <table>
+
+                    <tr title="用于摘要的连接配置。注意：选择不同的配置需要在摘要期间临时切换到该配置，当前配置中任何未保存的更改都将丢失。">
+                        <td><span>连接配置</span></td>
+                        <td><select id="connection_profile" class="text_pole"></select></td>
+                    </tr>
+
+                    <tr title="用于摘要的补全预设。注意：选择不同的预设需要在摘要期间临时切换到该预设，当前预设中任何未保存的更改都将丢失。另请注意，预设在不同的连接 API 之间不共享。">
+                        <td><span>补全预设</span></td>
+                        <td><select id="completion_preset" class="text_pole"></select></td>
+                    </tr>
+
+                    <tr title="以此预填写文本开始摘要。">
+                        <td><span>摘要预填写</span></td>
+                        <td><input id="prefill" class="text_pole" type="text" placeholder="以...开始回复"></td>
+                    </tr>
+
+                </table>
+
+                <label title="在显示的记忆和注入中包含预填写内容（对推理模型无效）" class="checkbox_label">
+                    <input id="show_prefill" type="checkbox" />
+                    <span>在记忆中包含预填写内容</span>
+                </label>
+
+                <hr>
+
+                <label class="checkbox_label" title="如果新消息将包含在短期记忆中，则会自动摘要。">
+                    <input id="auto_summarize" type="checkbox" />
+                    <span>自动生成摘要</span>
+                </label>
+
+                <label class="checkbox_label" title="自动摘要将在发送新消息之前触发，而不是之后。">
+                    <input id="auto_summarize_on_send" type="checkbox" />
+                    <span>生成前自动摘要</span>
+                </label>
+
+                <label title="自动摘要超过1条消息时显示进度条。" class="checkbox_label">
+                    <input id="auto_summarize_progress" type="checkbox" />
+                    <span>自动摘要进度条</span>
+                </label>
+
+                <label class="checkbox_label" title="延迟摘要的消息数量（0 = 摘要到最新消息，1 = 滞后一条消息，以此类推）">
+                    <input id="summarization_delay" class="text_pole widthUnset inline_setting" type="number" min="0" max="999" />
+                    <span>自动摘要消息延迟</span>
+                </label>
+
+                <label class="checkbox_label" title="等待累积到此数量的消息后再按顺序自动摘要（1 = 立即摘要每条消息，2 = 准备好两条消息时摘要，以此类推）。仍然一次摘要一条。 ">
+                    <input id="auto_summarize_batch_size" class="text_pole widthUnset inline_setting" type="number" min="1" max="999" />
+                    <span>自动摘要批处理大小</span>
+                </label>
+
+                <label class="checkbox_label" title="检查待摘要消息时的最大回溯数量（-1 禁用）。例如，10 表示自动摘要时，将检查最近的 10 个有效摘要目标，并摘要那些没有摘要的消息。">
+                    <input id="auto_summarize_message_limit" class="text_pole widthUnset inline_setting" type="number" min="-1" max="999" />
+                    <span>自动摘要消息限制</span>
+                </label>
+
+                <hr>
+
+                <div class="flex-container justifyspacebetween">
+                    <label title="是否使用消息和/或摘要作为摘要的上下文。您必须在摘要提示中使用 {{history}}。摘要将遵循配置的包含标准。" class="checkbox_label">
+                        <span>历史消息 </span>
+                        <select id="include_message_history_mode" class="text_pole flex2">
+                            <option value="none">无</option>
+                            <option value="messages_only">仅消息</option>
+                            <option value="summaries_only">仅摘要</option>
+                            <option value="messages_and_summaries">两者皆有</option>
+                        </select>
+                    </label>
+                    <button id="preview_message_history" class="menu_button fa-solid fa-eye interactable" title="预览历史消息的外观"></button>
+                </div>
+
+                <label title="在摘要提示中包含多少条先前的消息作为上下文。">
+                    <input id="include_message_history" class="text_pole widthUnset" type="number" min="1" max="99" />
+                    <span>先前消息数量</span>
+                </label>
+
+                <label title="包含先前消息时，也包含User消息。" class="checkbox_label">
+                    <input id="include_user_messages_in_history" type="checkbox" />
+                    <span>包含先前的User消息</span>
+                </label>
+
+                <hr>
+
+                <label class="checkbox_label" title="两次摘要之间的等待时间（秒）。如果您使用的外部 API 有速率限制，可能需要此设置。">
+                    <input id="summarization_time_delay" class="text_pole widthUnset inline_setting" type="number" min="0" max="999" />
+                    <span>摘要时间延迟</span>
+                </label>
+
+                <label title="编辑已摘要的消息将自动触发重新摘要。" class="checkbox_label">
+                    <input id="auto_summarize_on_edit" type="checkbox" />
+                    <span>编辑时重新摘要</span>
+                </label>
+
+                <label title="滑动已摘要的消息将自动触发重新摘要。" class="checkbox_label">
+                    <input id="auto_summarize_on_swipe" type="checkbox" />
+                    <span>滑动时重新摘要</span>
+                </label>
+
+                <label title="摘要时阻止聊天输入。" class="checkbox_label">
+                    <input id="block_chat" type="checkbox" />
+                    <span>阻止聊天输入</span>
+                </label>
+
+
+                <label title="要摘要的消息将包含在系统指令模板内部。如果未选中（默认），消息将在提示后单独添加。某些模型可能从此设置受益，但不推荐。" class="checkbox_label">
+                    <input id="nest_messages_in_prompt" type="checkbox" />
+                    <span>在摘要提示中嵌套消息</span>
+                </label>
+
+                <label title="警告：效果不佳。尝试通过包含常规提示中发送的所有内容（世界书、角色描述、角色定义、对话示例、历史消息等）来保留上下文切换。如果您的常规提示是静态的，这可以允许上下文切换在摘要之间工作，但由于提示中包含所有额外内容，会降低摘要的准确性。此外，此注入由 SillyTaven 处理，而不是插件，因此无法预览。" class="checkbox_label">
+                    <input id="include_world_info" type="checkbox" />
+                    <span>包含所有上下文内容</span>
+                </label>
+
+
+                <!-- Short-term memory -->
+                <hr>
+                <h4 class="textAlignCenter">短期记忆注入 <i class="fa-solid fa-info-circle" title="决定哪些消息被包含在短期记忆注入中以及注入位置。如果您更改此设置并包含了之前未摘要的消息，您可以手动触发重新摘要，或者等待自动摘要触发。"></i></h4>
+
+                <div class="flex-container justifyspacebetween alignitemscenter">
+                    <button id="edit_short_term_memory_prompt" class="menu_button flex1" title="编辑短期记忆提示"><span>编辑</span></button>
+                    <!--<button id="preview_short_term_memory" class="menu_button fa-solid fa-eye interactable" title="Preview the short-term memory injection" tabindex="0"></button>-->
+                </div>
+
+
+                <label title="自动摘要User消息并在记忆中包含其摘要。" class="checkbox_label">
+                    <input id="include_user_messages" type="checkbox" />
+                    <span>包含User消息</span>
+                </label>
+
+                <label title="自动摘要隐藏消息（从上下文中排除的消息）并在记忆中包含其摘要。" class="checkbox_label">
+                    <input id="include_system_messages" type="checkbox" />
+                    <span>包含隐藏消息</span>
+                </label>
+
+                <label title="自动摘要System消息（例如来自 /sys 命令的消息）并在记忆中包含其摘要。" class="checkbox_label">
+                    <input id="include_narrator_messages" type="checkbox" />
+                    <span>包含System消息</span>
+                </label>
+
+                <label title="消息需要被摘要的最小token长度。">
+                    <input id="message_length_threshold" class="text_pole widthUnset inline_setting" type="number" min="0" max="999" />
+                    <span>消息长度阈值</span>
+                </label>
+
+                <br>
+
+                <div class="flex-container justifyspacebetween">
+                    <label title="短期记忆可占用的最大上下文量（百分比或 token 数）。">
+                        <input id="short_term_context_limit" class="text_pole widthUnset inline_setting" type="number" min="0" max="99999" />
+                        <span>上下文 (<span id="short_term_context_limit_display"></span> tk)</span>
+                    </label>
+                    <div>
+                        <label>
+                            <input type="radio" name="short_term_context_type" value="percent" />
+                            <span>%</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="short_term_context_type" value="tokens" />
+                            <span>tk</span>
+                        </label>
+                    </div>
+                </div>
+
+                <label class="checkbox_label" title="在世界信息扫描中包含短期记忆">
+                    <input id="short_term_scan" type="checkbox" />
+                    <span>包含在世界书扫描中</span>
+                </label>
+                <div class="radio_group">
+                    <label>
+                        <input type="radio" name="short_term_position" value="-1" />
+                        <span>不注入</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="short_term_position" value="2" />
+                        <span>Main Prompt之前</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="short_term_position" value="0" />
+                        <span>Main Prompt之后</span>
+                    </label>
+                    <label class="flex-container alignItemsCenter" title="在当前对话结束前的多少条消息处。">
+                        <input type="radio" name="short_term_position" value="1" />
+                        <span>在对话中，深度为</span>
+                        <input id="short_term_depth" class="text_pole inline_setting" type="number" min="0" max="99" />
+                        <span>作为</span>
+                        <select id="short_term_role" class="text_pole inline_setting">
+                            <option value="0">系统</option>
+                            <option value="1">用户</option>
+                            <option value="2">AI助手</option>
+                        </select>
+                    </label>
+                </div>
+
+                <!-- Long-term memory -->
+                <hr>
+                <h4 class="textAlignCenter">长期记忆注入 <i class="fa-solid fa-info-circle" title="决定长期记忆消息注入的位置。"></i></h4>
+                <div class="flex-container justifyspacebetween alignitemscenter">
+                    <button id="edit_long_term_memory_prompt" class="menu_button flex1" title="编辑长期记忆提示"><span>编辑</span></button>
+                    <!--<button id="preview_long_term_memory" class="menu_button fa-solid fa-eye interactable" title="Preview the long-term memory injection" tabindex="0"></button>-->
+                </div>
+
+                <div class="flex-container justifyspacebetween">
+                    <label title="长期记忆可占用的最大上下文量（百分比或 token 数量）。">
+                        <input id="long_term_context_limit" class="text_pole widthUnset inline_setting" type="number" min="0" max="99999" />
+                        <span>上下文 (<span id="long_term_context_limit_display"></span> tk)</span>
+                    </label>
+                   <div>
+                        <label>
+                            <input type="radio" name="long_term_context_type" value="percent" />
+                            <span>%</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="long_term_context_type" value="tokens" />
+                            <span>tk</span>
+                        </label>
+                    </div>
+
+                </div>
+                <label class="checkbox_label" title="在世界信息扫描中包含长期记忆">
+                    <input id="long_term_scan" type="checkbox" />
+                    <span>包含在世界书扫描中</span>
+                </label>
+                <div class="radio_group">
+                    <label>
+                        <input type="radio" name="long_term_position" value="-1" />
+                        <span>不注入</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="long_term_position" value="2" />
+                        <span>Main Prompt之前</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="long_term_position" value="0" />
+                        <span>Main Prompt之后</span>
+                    </label>
+                    <label class="flex-container alignItemsCenter" title="在当前对话结束前的多少条消息处。">
+                        <input type="radio" name="long_term_position" value="1" />
+                        <span>在对话中，插入深度为</span>
+                        <input id="long_term_depth" class="text_pole inline_setting" type="number" min="0" max="99" />
+                        <span>作为</span>
+                        <select id="long_term_role" class="text_pole inline_setting">
+                            <option value="0">系统</option>
+                            <option value="1">用户</option>
+                            <option value="2">AI助手</option>
+                        </select>
+                    </label>
+                </div>
+
+
+                <!-- Misc. -->
+                <hr>
+                <h4 class="textAlignCenter">其他</h4>
+                <label title="在控制台中输出调试信息" class="checkbox_label">
+                    <input id="debug_mode" type="checkbox" />
+                    <span>调试模式</span>
+                </label>
+
+                <label title="在每条消息下方显示摘要" class="checkbox_label">
+                    <input id="display_memories" type="checkbox" />
+                    <span>显示记忆</span>
+                </label>
+
+                <label title="新对话是否默认启用记忆。" class="checkbox_label">
+                    <input id="default_chat_enabled" type="checkbox" />
+                    <span>在新对话中启用记忆</span>
+                </label>
+
+                <label title="使用一个在所有启用此项的对话间共享的全局开关状态。如果未选中，开启/关闭插件仅应用于当前活动对话。" class="checkbox_label">
+                    <input id="use_global_toggle_state" type="checkbox" />
+                    <span>使用全局切换状态</span>
+                </label>
+
+                <label title="限制在常规提示中发送的消息数量（-1 表示无限制）。消息记忆仍会被发送。">
+                    <input id="limit_injected_messages" class="text_pole widthUnset" type="number" min="0" max="999" />
+                    <span>限制消息上下文</span>
+                </label>
+
+                <label title="摘要注入到上下文时的分隔符。">
+                    <span>摘要注入分隔符</span>
+                    <input id="summary_injection_separator" class="text_pole" type="text" placeholder="" style="width: 10em">
+                </label>
+
+                <div class="flex-container justifyspacebetween alignitemscenter">
+                    <button id="revert_settings" class="menu_button flex1 margin0" title="将所有设置恢复为默认值（不是默认档案，而是插件自带的默认值）。您的其他档案不会受到影响。">
+                        <span>恢复默认设置</span>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
